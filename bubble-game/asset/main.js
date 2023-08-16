@@ -29,12 +29,10 @@ function createHit(){
     document.querySelector("#hit").textContent = hitNum;
 }
 
-
 function calculateScore(){
     count += 10;
     document.querySelector("#score").textContent = count;
 }
-
 
 document.querySelector("#content").addEventListener('click',function(details){
     var selectedBubble = Number(details.target.textContent);
