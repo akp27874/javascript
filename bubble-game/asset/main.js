@@ -41,6 +41,10 @@ document.querySelector("#content").addEventListener('click',function(details){
         makeBubble();
         createHit();
     }
+
+    if(details.target.textContent === 'Start'){
+        start();
+    }
 })
 
 function reset(){
@@ -48,6 +52,14 @@ function reset(){
     document.querySelector("#timer").textContent = 0;
 }
 
-runTimer();
-makeBubble();
-createHit();
+function start(){
+    runTimer();
+    makeBubble();
+    createHit(); 
+}
+
+function init(){
+    document.querySelector("#content").innerHTML = `<span class="start">Start</span>`;
+}
+
+init();
