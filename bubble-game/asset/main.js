@@ -1,9 +1,10 @@
 var timer=60;
 var count = 0;
 var hitNum;
+var totalBubbles = 108;
 function makeBubble() {
     var clutter = "";
-    for (let i = 1; i <= 108; i++) {
+    for (let i = 1; i <= totalBubbles; i++) {
         var rn = Math.floor(Math.random() * 10);
         clutter += `<div class="bubble">${rn}</div>`;
     }
@@ -57,6 +58,18 @@ function start(){
     makeBubble();
     createHit(); 
 }
+
+
+
+// Create a media condition that targets viewports upto 600px wide
+const mediaQuery = window.matchMedia('(max-width: 600px)')
+// Check if the media query is true
+if (mediaQuery.matches) {
+  // Then trigger an alert
+  totalBubbles = 45;
+}
+
+
 
 function init(){
     document.querySelector("#content").innerHTML = `<span class="start">Start</span>`;

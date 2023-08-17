@@ -104,3 +104,35 @@ h2{
 #content .start:hover{
     cursor: pointer;
 }
+
+@media (max-width: 600px) {
+
+    #nav{
+        padding: 5px 7%;
+    }
+
+    .nav-item{
+       gap:2px;
+        margin-left: 5px;
+    }
+    h2{
+        font-size: 18px;
+        font-weight: 700;
+        padding: 0px;
+        margin: 0px;
+    }
+    .box{
+        padding: 5px 5px;
+        font-size: 20px;
+        margin-left: 5px;
+    }
+
+    #content{
+        padding: 2px 5px;
+    }
+    .bubble{
+        width: 40px;
+        height: 40px;
+        font-weight: 400;
+    }
+}
