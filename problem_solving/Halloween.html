@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spooky Halloween Scene</title>
+  <style>
+    :root {
+      --sky-color: #87ceeb;
+      --night-color: #0b0c2a;
+      --moon-color: #fffacd;
+      --pumpkin-glow: #ff7518;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: var(--sky-color);
+      transition: background-color 1s ease;
+    }
+
+    .scene {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 10;
+    }
+
+    .toggle button {
+      background: #222;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .moon {
+      position: absolute;
+      top: 10%;
+      right: 10%;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: var(--moon-color);
+      box-shadow: 0 0 20px var(--moon-color);
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .house {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      background: #333;
+      border: 5px solid #000;
+      margin-bottom: 2rem;
+    }
+
+    .door {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 50px;
+      height: 100px;
+      background: #654321;
+      transform: translateX(-50%);
+      transform-origin: left;
+      transition: transform 0.5s ease;
+    }
+
+    .door:hover,
+    .door:focus {
+      transform: translateX(-50%) rotateY(45deg);
+    }
+
+    .graveyard {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .grave {
+      width: 40px;
+      height: 60px;
+      background: #444;
+      border-radius: 10px 10px 0 0;
+      position: relative;
+    }
+
+    .ghost {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      width: 30px;
+      height: 30px;
+      background: white;
+      border-radius: 50%;
+      transform: translateX(-50%);
+      animation: float 3s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-20px); }
+    }
+
+    .pumpkin {
+      width: 60px;
+      height: 60px;
+      background: orange;
+      border-radius: 50%;
+      position: relative;
+      box-shadow: 0 0 10px var(--pumpkin-glow);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 10px var(--pumpkin-glow); }
+      50% { box-shadow: 0 0 20px var(--pumpkin-glow); }
+    }
+
+    .night .moon {
+      opacity: 1;
+    }
+
+    .night body {
+      background-color: var(--night-color);
+    }
+
+    @media (max-width: 600px) {
+      .graveyard {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="toggle">
+    <button id="toggleNight" aria-label="Toggle night mode">🌙 Toggle Night</button>
+  </div>
+  <div class="scene" id="scene">
+    <div class="moon"></div>
+    <div class="house">
+      <div class="door" tabindex="0" aria-label="Haunted door"></div>
+    </div>
+    <div class="graveyard">
+      <div class="grave"><div class="ghost" aria-hidden="true"></div></div>
+      <div class="grave"><div class="ghost" aria-hidden="true"></div></div>
+      <div class="grave"><div class="ghost" aria-hidden="true"></div></div>
+    </div>
+    <div class="pumpkin" aria-label="Glowing pumpkin"></div>
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById('toggleNight');
+    const scene = document.getElementById('scene');
+
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('night');
+    });
+
+    toggleBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleBtn.click();
+      }
+    });
+  </script>
+</body>
+</html>
