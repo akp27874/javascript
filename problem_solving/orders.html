@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+</head>
+
+<body>
+    Problem Solving
+    <script>
+        const orders = [
+            {
+                id: 1,
+                customer: "Alice",
+                items: [
+                    { product: "Book", quantity: 2 },
+                    { product: "Pen", quantity: 5 }
+                ]
+            },
+            {
+                id: 2,
+                customer: "Bob",
+                items: [
+                    { product: "Book", quantity: 1 },
+                    { product: "Pencil", quantity: 3 }
+                ]
+            },
+            {
+                id: 3,
+                customer: "Alice",
+                items: [
+                    { product: "Notebook", quantity: 3 }
+                ]
+            }
+        ];
+
+        function getOrderQty(arr) {
+            let count = [];
+            for (let i of arr) {
+                let obj = {
+                    name: null,
+                    qty: null
+                }
+                obj.name = i.customer;
+                for (let j = 0; j < i.items.length; j++) {
+                    obj.qty += i.items[j].quantity;
+                }
+                count.push(obj);
+            }
+
+            let result = [];
+            for (let j = 0; j < count.length; j++) {
+
+                let isDuplicate = false;
+                for (let k = 0; k < result.length; k++) {
+                    if (count[j].name === result[k].name) {
+                        isDuplicate = true;
+                        result[k].qty += count[j].qty;
+
+                    }
+                }
+
+                if (!isDuplicate) {
+                    result.push(count[j]);
+                }
+                
+            }
+            return result;
+        }
+
+        const totalOderPerPerson = getOrderQty(orders);
+        console.log(totalOderPerPerson);
+
+
+    </script>
+</body>
+
+</html>
