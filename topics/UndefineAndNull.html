@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undefine And Null</title>
+</head>
+
+<body>
+    Go Back to <a href="../index.html">index page</a>
+    <p>Open console to view the logs to see differences for undefined and null</p>
+    <script>
+        let a;
+        console.log("Without initialization variable let : ", a);
+
+        let b = null;
+        console.log("With initialization null variable let : ", b);
+
+        if (a == b) {
+            console.log("a and b are equal in case of ==");
+        }
+
+        if (a === b) {
+            console.log("It's true");
+        } else {
+
+            console.log(typeof (a))
+            console.log(typeof (b))
+            console.log("a and b are not equal in case of ===");
+        }
+    </script>
+</body>
+
+</html>
