@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Propogation</title>
+</head>
+<style>
+    .grid-container {
+        margin-top: 50px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .column {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #parent {
+        height: 150px;
+        padding: 20px;
+        border: 2px solid #333;
+    }
+
+    #child {
+        margin: 10px;
+    }
+
+    #outer {
+        height: 150px;
+        padding: 20px;
+        border: 2px solid #333;
+    }
+
+    #inner {
+        margin: 10px;
+    }
+</style>
+
+<body>
+    Go Back to <a href="../index.html">index page</a>
+    <p>Check the console for log messages, and head over to the Sources tab to explore the code and understand how
+        <code>Event propogation</code> behaves.
+    </p>
+     
+            You're diving into one of the most important concepts in DOM event handling: **event propagation**,
+            specifically the difference between **bubbling** and **capturing**.<br>
+
+            🔁 Event Propagation: Two Phases <br>
+
+            When an event (like a click) happens on an element, it travels through the DOM in two phases: <br>
+
+            1. **Capturing Phase** (aka "trickling down"):
+            - Starts from the `window` and moves **down** to the target element.
+            - You can listen to this phase by passing `true` as the third argument in `addEventListener`.
+            <br>
+            2. **Bubbling Phase**:
+            - Starts from the target element and bubbles **up** to its ancestors.
+            - This is the default phase when you don’t pass `true`.
+
+            <br><br>
+
+            
+            #### 🧱 Parent & Child
+            ```js
+            parent.addEventListener('click', ...) // bubbling (default)
+            child.addEventListener('click', ...) // bubbling (default)
+            ```
+
+            - When you click the **Child** button:
+            - First, `Child clicked` logs (target element).
+            - Then, `Parent clicked` logs (bubbles up).
+            <br><br>
+
+            #### 🧱 Outer & Inner
+            ```js
+            outer.addEventListener('click', ..., true) // capturing
+            inner.addEventListener('click', ...) // bubbling
+            ```
+
+            - When you click the **Inner** button:
+            - First, `Outer clicked during capture` logs (capturing phase).
+            - Then, `Inner clicked` logs (target).
+            - No bubbling to `outer` again, because it already handled the event in capture phase.
+
+            <br><br>
+
+            ### 🧠 Why Use `true` (Capture)?
+            Passing `true` lets you intercept the event **before it reaches the target**. This is useful when:
+            - You want to **pre-process** or **block** events early.
+            - You need to handle events **before child elements** do.
+            - You’re building custom UI components or debugging event flow.
+
+           
+        
+    <div class="grid-container">
+       
+        <div class="column">
+            <div id="parent">
+                Parent
+                <button id="child">Child</button>
+            </div>
+
+        </div>
+        <div class="column">
+            <div id="outer">
+                Outer
+                <button id="inner">Inner</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById('parent').addEventListener('click', () => {
+            console.log('Parent clicked');
+        });
+
+        document.getElementById('child').addEventListener('click', () => {
+            console.log('Child clicked');
+        });
+
+
+        document.getElementById('outer').addEventListener('click', () => {
+            console.log('Outer clicked during capture');
+        }, true); // capture = true
+
+        document.getElementById('inner').addEventListener('click', () => {
+            console.log('Inner clicked');
+        }); 
+    </script>
+</body>
+
+</html>
