@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debouncing</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+    }
+    .grid-container{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        height: 100vh;
+    }
+    .column{
+        padding: 20px;
+        font-size: 1rem;
+    }
+   
+</style>
+
+<body>
+    <div class="grid-container">
+        <div class="column column-left">
+            Go Back to <a href="../index.html">index page</a>
+            <p>Open console to view the logs to see differences for undefined and null</p>
+            <h2>Normal Function</h2>
+            <input id="search" type="text" onkeyup="getData()"> <button onclick="clearSearch()">Clear</button>
+        </div>
+        <div class="column column-right">
+            Go Back to <a href="../index.html">index page</a>
+            <p>Open console to view the logs to see differences for undefined and null</p>
+            <h2>Debounce Function</h2>
+            <input id="search" type="text" onkeyup="betterFunction()"> <button onclick="clearSearch()">Clear</button>
+
+        </div>
+    </div>
+    <script>
+        let counter = 0;
+        function getData() {
+            console.log("fetching data..", counter++);
+        }
+
+        function debouncing(fn, delay) {
+            let timer;
+            return function (...args) {
+                let context = this;
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    fn.apply(context, args);
+                }, delay);
+            }
+        }
+
+        const betterFunction = debouncing(getData, 300);
+
+        function clearSearch() {
+            document.getElementById('search').value = '';
+        }
+    </script>
+</body>
+
+</html>
