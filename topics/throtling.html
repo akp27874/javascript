@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Throttling</title>
+</head>
+<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+    }
+
+    .column {
+        padding: 20px;
+        font-size: 1.5rem;
+    }
+
+    .scroll-box {
+        height: 100vh;
+        overflow-y: scroll;
+        border: 2px solid #333;
+        padding: 20px;
+    }
+
+    .content {
+        height: 400px;
+        background: linear-gradient(to bottom, #caf0f8, #03045e);
+    }
+</style>
+
+<body>
+    <div class="grid-container">
+        <div class="column">
+            Go Back to <a href="../index.html">index page</a>
+            <h1>Namaste Javascript</h1>
+            <h2>Normal</h2>
+            <div class="scroll-box" id="Normal-box">
+                <div class="content">
+                    <p>Scroll and open the console to see difference ...</p>
+                    <div style="height:450px;"></div>
+                    <p>You've reached the bottom!</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="column">
+            Go Back to <a href="../index.html">index page</a>
+            <h1>Namaste Javascript</h1>
+            <h2>Throttling</h2>
+            <div class="scroll-box" id="Throtling-box">
+                <div class="content">
+                    <p>Scroll and open the console to see difference ...</p>
+                    <div style="height:450px;"></div>
+                    <p>You've reached the bottom!</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+
+        let counter = 0;
+        function getData() {
+            console.log("Resizing..", counter++);
+        }
+
+        function throttle(fn, delay) {
+            let flag = true, timer;
+
+            return function (...args) {
+                let context = this;
+                if (flag) {
+                    fn.apply(context, args);
+                    flag = false;
+                    timer = setTimeout(() => {
+                        flag = true;
+                    }, delay);
+                }
+
+            }
+        }
+
+        const getBetterFunction = throttle(getData, 1000);
+        const scrollBox = document.getElementById('Normal-box');
+        scrollBox.addEventListener('scroll', () => {
+            getData();
+        });
+
+        const throtleBox = document.getElementById('Throtling-box');
+        throtleBox.addEventListener('scroll', ()=>{
+            getBetterFunction();
+        });
+
+    </script>
+</body>
+
+</html>
