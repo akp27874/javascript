@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currying</title>
+</head>
+<style>
+.grid-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 20px;
+}
+.column{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>
+
+<body>
+    Go Back to <a href="../index.html">index page</a>
+    <p>Check the console for log messages, and head over to the Sources tab to explore the code and understand
+        how <code>currying</code>behaves. </p>
+    <p>
+        Function currying is a technique in javascript where a function that takes
+        multiple arguments is transformed into a series of functions, each taking a single argument.
+        This allows you to partially apply the function by providing some of the arguments upfront,
+        and it returns a new function that expects the remaining arguments
+    </p>
+
+    <div class="grid-container">
+        <div class="column">
+            <h4>Function currying using clousures </h4>
+            <script>
+                function add(x) {
+                    return function (y) {
+                        return (x + y);
+                    }
+                }
+                // console.log(add(5));    // this will return function
+                const add5 = add(5);        //  this assigns a function to add5
+                // console.log(add5);       // prints function 
+                console.log("Closures -- ",add5(3));       // prints 8
+
+                /*
+                    In this example, the add function is curried, so you can create new functions with specific behavior 
+                by supplying only some of the arguments. Currying can be useful for creating more flexible and reusable 
+                functions in functional programming paradigms.
+        
+                */
+
+            </script>
+        </div>
+        <div class="column">
+            Function currying using bind method
+            <script>
+                /* We can achieve function currying objective with 'bind' method  */
+
+                function add(x, y) {
+                    return (x + y);
+                }
+
+                /* Case 1 */
+                const addFive = add.bind(this, 5);
+                console.log("Bind method --",addFive(3)); // output 8
+                
+                /* Case 2 */
+                const add4 = add.bind(this, 4, 7);
+               console.log("Bind method --",add4(5)); // It will ignore argument '5' 
+
+
+                /* Case 3 */
+                const add3 = add.bind(3);  // First argument is missing : 'this'
+               console.log("Bind method --",add3(2));    // Output will be NaN
+
+                /* Case 4 */
+                const add2 = add.bind(9, 2); // Although first argument is passed as '9' It will ignore it
+                console.log("Bind method --", add2(10));  // Output 12
+            </script>
+        </div>
+       
+    </div>
+
+</body>
+
+</html>
