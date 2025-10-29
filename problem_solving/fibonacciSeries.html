@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonnaci Series</title>
+</head>
+
+<body>
+    Go Back to <a href="../index.html">index page</a>
+    <h2>Fibonnaci Series</h2>
+    <label for="fibonnaci">Enter number</label>
+    <input type="number" name="fibonnaci" id="fibonnaci">
+    <button onclick="getFibonnaciSeries()">Get Series</button>
+    <code id="result"></code>
+    <script>
+        function getFibonnaciSeries() {
+            const num = document.getElementById('fibonnaci').value;
+            const result = document.getElementById('result')
+            let series = [0, 1];
+            if (num <= 2) {
+                document.getElementById('result').innerHTML = series.slice(0, num);
+            }
+            for (let i = 2; i < num; i++) {
+                series[i] = series[i - 1] + series[i - 2];
+            }
+
+            document.getElementById('result').innerHTML = series.slice(0, num);
+
+        }
+
+
+    </script>
+
+</body>
+
+</html>
