@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starts With</title>
+</head>
+
+<body>
+    Go Back to <a href="../index.html">index page</a><br><br>
+
+    <code>
+        const products = [ <br>
+        {id:101, name: 'Mobile phone', price: 2220, desc: 'samsung'}, <br>
+        {id:102, name: 'Tablet', price: 1220, desc: 'apple'}, <br>
+        {id:103, name: 'Laptop', price: 4230, desc: 'samsung'}, <br>
+        {id:104, name: 'Mouse', price: 22, desc: 'logitech'}, <br>
+        {id:105, name: 'Mobile phone pro version', price: 12220, desc: 'samsung'} <br>
+    ]
+    </code>
+
+    <h2>Result : </h2>
+    <code id="result"></code>
+
+    <script>
+        const products = [
+            { id: 101, name: 'Mobile phone', price: 2220, desc: 'samsung' },
+            { id: 102, name: 'Tablet', price: 1220, desc: 'apple' },
+            { id: 103, name: 'Laptop', price: 4230, desc: 'samsung' },
+            { id: 104, name: 'Mouse', price: 22, desc: 'logitech' },
+            { id: 105, name: 'Mobile phone pro version', price: 12220, desc: 'samsung' }
+        ]
+        const prods = products.filter(item => item.name.startsWith('Mo'));
+        const html = prods.map(item => `<div>${item.name} - ₹${item.price} (${item.desc})</div>`).join('');
+        document.getElementById('result').innerHTML = html;
+
+    </script>
+
+</body>
+
+</html>
