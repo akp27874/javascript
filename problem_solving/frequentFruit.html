@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Most frequent fruit </title>
+</head>
+
+<body>
+    Go Back to <a href="../index.html">index page</a><br><br>
+    <h1>Most frequent fruit</h1>
+    <p>Check the console for log messages, and head over to the Sources tab to explore the code.
+    </p>
+    <script>
+       function getMostFrequentFruit(data) {
+            const frequencyMap = {};
+            data.forEach(item => {
+                frequencyMap[item.fruit] = (frequencyMap[item.fruit] || 0) + 1;
+            });
+
+            let mostFrequentFruit = null;
+            let maxCount = 0;
+            for (const fruit in frequencyMap) {
+                if (frequencyMap[fruit] > maxCount) {
+                    maxCount = frequencyMap[fruit];
+                    mostFrequentFruit = fruit;
+                }
+            }
+
+            return mostFrequentFruit;
+        }
+        const data = [
+            { fruit: "apple" },
+            { fruit: "banana" },
+            { fruit: "apple" },
+            { fruit: "orange" },
+            { fruit: "banana" },
+            { fruit: "apple" }
+        ];
+        console.log(getMostFrequentFruit(data));
+    </script>
+</body>
+
+</html>
