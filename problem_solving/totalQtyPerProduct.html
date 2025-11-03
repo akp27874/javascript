@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Total Qty per product</title>
+</head>
+
+<body>
+    Go Back to <a href="../index.html">index page</a><br><br>
+    <h1>Total Qty per product</h1>
+    <h3>Input : </h3>
+    <code>
+        const orders = [
+            { customer: "Alice", items: [{ product: "Book", quantity: 2 }, { product: "Pen", quantity: 5 }] },
+            { customer: "Bob", items: [{ product: "Book", quantity: 1 }, { product: "Pencil", quantity: 3 }] },
+            { customer: "Alice", items: [{ product: "Notebook", quantity: 3 }] }
+        ];
+    </code>
+
+    <h3>Output : </h3>
+    <code>{ Book: 3, Pen: 5, Pencil: 3, Notebook: 3 }</code>
+
+    <script>
+        const orders = [
+            { customer: "Alice", items: [{ product: "Book", quantity: 2 }, { product: "Pen", quantity: 5 }] },
+            { customer: "Bob", items: [{ product: "Book", quantity: 1 }, { product: "Pencil", quantity: 3 }] },
+            { customer: "Alice", items: [{ product: "Notebook", quantity: 3 }] }
+        ];
+
+        function getTotalQtyPerProduct(arr) {
+            let qtyPerProduct = {};
+            arr.forEach(item => {
+                item.items.forEach(item => {
+                    const { product, quantity } = item;
+                    if (qtyPerProduct[product]) {
+                        qtyPerProduct[product] += quantity;
+                    } else {
+                        qtyPerProduct[product] = quantity;
+                    }
+                })
+            })
+            return qtyPerProduct;
+        }
+
+        console.log(getTotalQtyPerProduct(orders))
+    </script>
+
+</body>
+
+</html>
