@@ -74,6 +74,23 @@
         const totalOderPerPerson = getOrderQty(orders);
         console.log(totalOderPerPerson);
 
+        // Solution 2: Using reduce
+        function getOrderQtyReduce(arr) {
+         const aggregate =  arr.reduce( (acc, cur)=>{
+            const totalQty = cur.items.reduce((sum, cur)=> sum + cur.quantity, 0);
+            acc[cur.customer] = (acc[cur.customer] || 0) + totalQty;
+            return acc;
+         },{})
+
+         return aggregate;
+        }
+        // console.log();
+
+        const obj = getOrderQtyReduce(orders)
+        for(let i in obj){
+            console.log(i,":  ", obj[i]);
+        }
+
 
     </script>
 </body>
