@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aggregate marks per student</title>
+</head>
+<style>
+    .result {
+        font-size: 1.5rem;
+    }
+</style>
+
+<body>
+    Go Back to <a href="../index.html">index page</a><br><br>
+    <h1>Aggregate score per student</h1>
+    <pre>
+         const studentData = [
+            {
+                student: 'Alice',
+                scores: [
+                    { subject: 'Math', marks: 90 },
+                    { subject: 'Science', marks: 85 },
+                ],
+            },
+            {
+                student: 'Bob',
+                scores: [
+                    { subject: 'Math', marks: 78 },
+                    { subject: 'History', marks: 92 },
+                ],
+            },
+            { student: 'Alice', scores: [{ subject: 'History', marks: 88 }] },
+        ];
+    </pre>
+
+    Result: <br>
+    <div id="result" class="result"></div>
+    <script>
+        function calculateAggregate(arr) {
+            const flatArr = arr.reduce((acc, cur) => {
+                let name = cur.student;
+                let marksTotal = 0;
+                let subjectCount = 0;
+                cur.scores.forEach(item => {
+                    marksTotal += item.marks;
+                    subjectCount++;
+                })
+
+                if (!acc[name]) {
+                    acc[name] = {
+                        marks: 0,
+                        subject: 0
+                    }
+                }
+
+                acc[name].marks += marksTotal;
+                acc[name].subject += subjectCount
+
+                return acc
+            }, {})
+
+            let result = {};
+            for (let i in flatArr) {
+                const data = flatArr[i];
+                result[i] = data.marks / data.subject;
+            }
+            return result;
+        }
+        const studentData = [
+            {
+                student: 'Alice',
+                scores: [
+                    { subject: 'Math', marks: 90 },
+                    { subject: 'Science', marks: 85 },
+                ],
+            },
+            {
+                student: 'Bob',
+                scores: [
+                    { subject: 'Math', marks: 78 },
+                    { subject: 'History', marks: 92 },
+                ],
+            },
+            { student: 'Alice', scores: [{ subject: 'History', marks: 88 }] },
+        ];
+
+        const getAggregate = calculateAggregate(studentData);
+        // Convert the object to a formatted JSON string
+        const formattedData = JSON.stringify(getAggregate, null, 4);
+
+        // Use <pre> tags in HTML to preserve the formatting (whitespace and newlines)
+        document.getElementById('result').innerHTML = `<pre>${formattedData}</pre>`;
+        console.log(getAggregate)
+    </script>
+</body>
+
+</html>
