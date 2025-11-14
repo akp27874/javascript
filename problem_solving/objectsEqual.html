@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects Equality</title>
+</head>
+
+<body>
+    Go Back to <a href="../index.html">index page</a><br><br>
+
+    <p>Change the values and check</p>
+    <pre>let ob1 = { id: 101, name: 'ashish' }</pre>
+    <pre> let ob2 = { id: 101, name: 'ashish' }</pre>
+    <script>
+        let ob1 = { id: 101, name: 'ashish' }
+        let ob2 = { id: 101, name: 'ashish' }
+
+        function checkObjectsEquality(ob1, ob2) {
+            let keys1 = Object.keys(ob1);
+            let keys2 = Object.keys(ob2);
+
+            if (keys1.length !== keys2.length) return false;
+            return keys1.every(key => ob2.hasOwnProperty(key) && ob1[key] === ob2[key]);
+
+        }
+
+        const res = checkObjectsEquality(ob1, ob2);
+        if (res) {
+            console.log("Objects are equal")
+        } else {
+            console.log("Objects are not equal")
+        }
+
+
+
+    </script>
+</body>
+
+</html>
