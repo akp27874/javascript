@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     Go Back to <a href="../index.html">index page</a>
+    <h2>What will be the output for the below code </h2>
+    <code>
+        let length = 20; <br>
+        function foo(){
+            console.log(this.length);
+        } <br>
+        const data = [foo, "A", 300] <br>
+        data[0]("Ashish");
+    </code>
+    <script>
+        let length = 20;
+        function foo(){
+            console.log(this.length);
+        }
+        const data = [foo, "A", 300]
+        data[0]("Ashish");
+    </script>
+</body>
+</html>
