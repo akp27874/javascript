@@ -18,8 +18,8 @@
         let ob2 = { id: 101, name: 'ashish' }
 
         function checkObjectsEquality(ob1, ob2) {
-            let keys1 = Object.keys(ob1);
-            let keys2 = Object.keys(ob2);
+            let keys1 = Object.keys(ob1); // Returns array of keys
+            let keys2 = Object.keys(ob2); // Returns array of keys
 
             if (keys1.length !== keys2.length) return false;
             return keys1.every(key => ob2.hasOwnProperty(key) && ob1[key] === ob2[key]);

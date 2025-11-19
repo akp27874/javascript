@@ -20,7 +20,7 @@
             const result = document.getElementById('result')
             let series = [0, 1];
             if (num <= 2) {
-                document.getElementById('result').innerHTML = series.slice(0, num);
+                document.getElementById('result').innerHTML = series.slice(0, num); // To handle edge cases
             }
             for (let i = 2; i < num; i++) {
                 series[i] = series[i - 1] + series[i - 2];

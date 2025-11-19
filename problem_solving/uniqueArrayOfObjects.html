@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unique Array Of Objects</title>
+</head>
+
+<body>
+    Go Back to <a href="../index.html">index page</a><br><br>
+    Input :<code>
+       [{id:1},{id:2},{id:1},{id:4}]
+    </code>
+    <br>
+    Output :<code>
+        [ { id: 1 }, { id: 2 }, { id: 4 } ]
+    </code>
+
+    <script>
+        const arr = [{ id: 1 }, { id: 2 }, { id: 1 }, { id: 4 }]
+        const result = arr.filter((item, index, self) => index === self.findIndex(i => i.id === item.id))
+        console.log(result);
+    </script>
+
+</body>
+
+</html>
