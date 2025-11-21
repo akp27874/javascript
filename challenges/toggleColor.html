@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Color</title>
+
+</head>
+<style>
+.btn{height: 3rem; width: 6rem; background-color: aliceblue; cursor: pointer; border-radius: 15px;}
+.container{display: flex; align-items: center; justify-content: center;}
+.red{ background-color: red; height: 300px; width: 300px; margin: 4px;}
+.green{ background-color: green; height: 300px; width: 300px; margin: 4px;}
+</style>
+<body>
+    Go Back to <a href="../index.html">index page</a><br><br>
+    <h1>Toggle Color: <button onclick="toggleColor()" class="btn">Toggle</button></h1> 
+    
+    <div class="container">
+        
+        <div id="one" class="red"></div>
+        <div id="two" class="green"></div>
+    </div>
+
+    <script>
+        function toggleColor(){
+            const redDiv = document.getElementById('one')
+            const greenDiv = document.getElementById('two')
+            if(redDiv.classList.contains('red')){
+                redDiv.classList.replace('red', 'green');
+                greenDiv.classList.replace('green', 'red');
+            }else{
+                redDiv.classList.replace('green', 'red');
+                greenDiv.classList.replace('red', 'green');
+            }
+        }
+    </script>
+</body>
+</html>

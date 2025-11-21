@@ -10,7 +10,7 @@
 <body>
     Go Back to <a href="../index.html">index page</a><br><br>
     <h1>Order count</h1>
-     <script>
+    <script>
         const orders = [
             {
                 id: 1,
@@ -66,7 +66,7 @@
                 if (!isDuplicate) {
                     result.push(count[j]);
                 }
-                
+
             }
             return result;
         }
@@ -75,21 +75,22 @@
         console.log(totalOderPerPerson);
 
         // Solution 2: Using reduce
-        function getOrderQtyReduce(arr) {
-         const aggregate =  arr.reduce( (acc, cur)=>{
-            const totalQty = cur.items.reduce((sum, cur)=> sum + cur.quantity, 0);
-            acc[cur.customer] = (acc[cur.customer] || 0) + totalQty;
-            return acc;
-         },{})
+        function getOrderQuantitiesByCustomer(orders) {
+            return orders.reduce((customerTotals, order) => {
+                const totalQuantity = order.items.reduce(
+                    (sum, item) => {
+                        return sum + item.quantity;
+                    }, 0
+                );
 
-         return aggregate;
-        }
-        // console.log();
+                customerTotals[order.customer] =
+                    (customerTotals[order.customer] || 0) + totalQuantity;
 
-        const obj = getOrderQtyReduce(orders)
-        for(let i in obj){
-            console.log(i,":  ", obj[i]);
+                return customerTotals;
+            }, {});
         }
+        const agg = getOrderQuantitiesByCustomer(orders);
+        console.log(agg)
 
 
     </script>
