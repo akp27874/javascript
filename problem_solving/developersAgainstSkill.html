@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developers Against Skill</title>
+</head>
+<body>
+    Go Back to <a href="../index.html">index page</a>
+    <script>
+        const arr = [
+            {name:'Alice', skills:['js','ts','html','css']},
+            {name:'Bob', skills:['html','css']},
+            {name:'Denis', skills:['css','scss']},
+        ]
+        // result = [
+        //     {'js':['Alice']},
+        //     {'ts':['Alice']},
+        //     {'html':['Alice','Bob']},
+        //     {'css':['Alice','Bob','Denis']},
+        //     {'scss':['Denis']}
+        // ]
+        const skillMap = {};
+        arr.forEach(person=>{
+            person.skills.forEach(skill=>{
+                if(!skillMap[skill]){
+                    skillMap[skill] = [];
+                }
+                skillMap[skill].push(person.name)
+            })
+        })
+        console.log(skillMap);
+    </script>
+</body>
+</html>
